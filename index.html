@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue Lock - Ziry</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+/* ------------------ VIDEO DE FONDO ------------------ */
+#video-bg{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  filter: hue-rotate(250deg) brightness(0.6);
+}
+
+/* ------------------ OVERLAY MORADO-NEGRO ------------------ */
+#overlay{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background:rgba(15,0,30,0.6);
+  z-index:-1;
+}
+
+/* ------------------ PANTALLA DE CONTRASEÑA ------------------ */
+#login{
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:rgba(8,0,20,0.9);
+  position:fixed;
+  z-index:10;
+}
+
+#login input{
+  padding:12px 20px;
+  border:none;
+  border-radius:8px;
+  font-size:18px;
+  outline:none;
+  margin-bottom:10px;
+}
+
+#login button{
+  padding:10px 22px;
+  font-size:18px;
+  background:#8e00ff;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+#login button:hover{
+  background:#b100ff;
+}
+
+/* ------------------ CONTENIDO PRINCIPAL ------------------ */
+#content{
+  display:none;
+  padding:40px 20px;
+  color:#e5d4ff;
+  text-shadow:0 0 10px #7a00f8;
+}
+
+/* ------------------ FICHA PRINCIPAL ------------------ */
+.ficha{
+  width:90%;
+  max-width:900px;
+  margin:40px auto;
+  background:rgba(40,0,70,0.6);
+  padding:25px;
+  border-radius:15px;
+  border:2px solid #b300ff;
+  box-shadow:0 0 25px #9c00ff;
+  backdrop-filter:blur(6px);
+  animation: glow 4s infinite alternate;
+}
+
+.ficha {
+  text-align: center;
+  margin: 0 auto;
+}
+
+@keyframes glow{
+  from{ box-shadow:0 0 10px #7a00f8; }
+  to{ box-shadow:0 0 25px #d400ff; }
+}
+
+.ficha img{
+  width:45%;
+  border-radius:15px;
+  border:3px solid #c200ff;
+  margin-bottom:20px;
+}
+
+/* ------------------ DOS COLUMNAS U20 ------------------ */
+
+.columnas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;                /* separación entre columnas */
+  justify-content: center;   /* centra todo el bloque horizontalmente */
+  width: 100%;
+  max-width: 1200px;
+  margin: 35px auto;         /* centra el contenedor en la página */
+}
+
+.card {
+  background: rgba(50,0,80,0.65);
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid #a500ff;
+  box-shadow: 0 0 25px #8e00ff;
+  text-align: center;
+
+  flex: 0 0 45%;            /* cada card ocupa el 45% del ancho disponible */
+  min-width: 280px;          /* evita que se achiquen demasiado en móviles */
+}
+
+.texto-respetar {
+  white-space: pre-wrap;     /* respeta saltos y espacios */
+  word-wrap: break-word;     /* evita que se salga del contenedor */
+  line-height: 1.4;
+  font-family: "Courier New", monospace;
+  text-align: left;          /* texto alineado a la izquierda */
+  font-size: 13px;
+}
+
+.card img{
+  width:55%;
+  border-radius:12px;
+  border:2px solid #d400ff;
+  margin-bottom:15px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+/* ------------------ BOTÓN DE AUDIO ------------------ */
+#audio-btn{
+  display:block;
+  margin:30px auto;
+  padding:12px 30px;
+  border:none;
+  background:#9b00ff;
+  color:white;
+  font-size:20px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#audio-btn:hover{
+  background:#bc00ff;
+}
+
+</style>
+</head>
+<body>
+
+<!-- 🔮 VIDEO DE FONDO -->
+<video id="video-bg" autoplay muted loop>
+  <source src="video.mp4"> 
+  <!-- PONÉ TU VIDEO LOCAL ACÁ -->
+</video>
+
+<div id="overlay"></div>
+
+<!-- 🔒 PANTALLA CONTRASEÑA -->
+<div id="login">
+  <input type="password" id="pass" placeholder="Contraseña">
+  <button onclick="acceder()">Entrar</button>
+</div>
+
+<!-- 🎆 CONTENIDO PRINCIPAL -->
+<div id="content">
+
+  <div class="ficha">
+
+    <img src="reiko.jpg">
+
+    <h1>𝄖 ｡ #BLUE LOCK PROJECT</h1>
+    <h2>⚽︎ STATS ㈱꯭</h2>
+
+    <br>
+
+    <p>⟢ Nombre: <b>Reiko Mikage</b></p>
+    <p>⟢ Edad: <b>17</b></p>
+
+    <hr style="border-color:#c200ff; margin:15px 0;">
+
+    <p>• Pase: <b>88</b></p>
+    <p>• Tiro: <b>113</b></p>
+    <p>• Físico: <b>52</b></p>
+    <p>• Regate: <b>94</b></p>
+    <p>• Defensa: <b>60</b></p>
+    <p>• Velocidad: <b>61</b></p>
+
+  </div>
+
+  <!-- 🔊 BOTÓN AUDIO -->
+  <button id="audio-btn" onclick="toggleAudio()">Reproducir</button>
+
+  <audio id="audio">
+    <source src="BTS - Black Swan (Audio).mp3" type="audio/mpeg">
+    <!-- RECORDÁ PONER TU ARCHIVO LOCAL ACÁ -->
+  </audio>
+
+  <!-- ⚽ COLUMNAS U20 -->
+  <div class="columnas">
+<div class="card">
+  <img src="reo.jpg" alt="Reo Mikage U20">
+  <h2>Reo Mikage — U20</h2>
+  <div class="texto-respetar">
+
+EDICIÓN DE BLUE LOCK ELEVEN VS SUB 20 DE JAPÓN
+
+Estilo y Adaptación del Camaleón de Reo Mikage
+
+Legendario
+
+(Pasiva de Estilo – Pase)
+
+Eres un jugador versátil, capaz de ocupar cualquier zona del campo. Tus estadísticas base reciben +5 puntos pasivos. Pase y Regate aumentan +11 puntos, Tiro, Defensa, Físico y Velocidad +8. Cada vez que ganes un duelo, Pase y Regate aumentan +6 puntos hasta 3 veces. Reduces -13 puntos en defensa enemiga en Pase vs Defensa y Regate vs Defensa. Puedes copiar cualquier jugada de otro jugador dentro del campo, ganando +5 puntos en la estadística correspondiente (no se puede acumular en la misma categoría). No puedes copiar pasivas ni jugadas exclusivas del New Gen Eleven. Puedes replicar estilos como los de Ryusei Shidou, Seishiro Nagi, Kenyu Yukimiya u Oliver Aiku.
+
+Camaleón
+
+Permite copiar una pasiva activa de aliado o enemigo durante la jugada. Si la pasiva incluye Físico o Velocidad con ruleta de riesgo, la ruleta se ajusta a 40% de no lesión y 60% de lesión.
+
+Ejecución:
+Redacta qué pasiva copias y haz referencia a Camaleón. Respeta el tiempo de enfriamiento de las pasivas copiadas.
+
+Gyro Shot – Estilo del Camaleón
+
+Disparo con trayectoria curva que parece desviarse pero entra en la portería, reduciendo -8 al portero. Si un rival interviene, fuerza duelo Tiro vs Defensa con -20% en sus estadísticas.
+
+Ejecución:
+Redacta cómo ejecutas el tiro y menciona Gyro Shot – Estilo del Camaleón. Cooldown 7 turnos globales.
+
+Control Absorbente x Despeje Giratorio – Estilo del Camaleón
+
+Permite convertir un rechazo, mal pase o posición incómoda en una oportunidad, conectando con el balón en un giro para pase o tiro. Aumenta +6 en Pase hasta 2 veces. Si tu equipo recupera el balón, ganan +5 en Tiro, Pase y Regate. La defensa se ve reducida -20% en duelos.
+
+Ejecución:
+Redacta una jugada donde el balón llega en ángulo incómodo y conectas con él usando Control Absorbente x Despeje Giratorio. Cooldown 7 turnos globales.
+
+Defensa Asfixiante – Estilo Camaleón
+
+Permite presionar al rival al punto de limitar sus opciones sin quitar el balón directamente. +12 Defensa y +10 Físico mientras dure la presión. Si el rival falla la ruleta, puedes aumentar +6 en Pase o Regate temporalmente.
+
+Ejecución:
+Redacta un marcaje constante mencionando Defensa Asfixiante. Cooldown 7 turnos globales.
+
+Movimiento de flujo
+
+Dragon Drive Shot – Estilo del Camaleón
+
+Disparo salvaje, brutal y egoísta, replicando instinto animal. Tiro +10, reducción de Defensa rival -25%, fuerza Tiro vs Defensa.
+
+Ejecución:
+Menciona el uso de Dragon Drive Shot – Estilo del Camaleón en un balón en el aire o rechazado. Cooldown 8 turnos globales.
+      </p>
+    </div>
+
+<div class="card">
+  <img src="nagi.jpg" alt="Nagi Seishiro U20">
+  <h2>Nagi Seishiro — U20</h2>
+  <div class="texto-respetar">
+EDICIÓN BLUE LOCK ELEVEN VS SUB 20 DE JAPÓN
+
+Despertar del Genio Dormido de Seishiro Nagi
+
+Legendario
+
+(Pasiva de Estilo – Tiro)
+
+Eres un genio excepcional con mucho talento, capaz de controlar el balón sin importar las circunstancias o la posición en la que te encuentres. Desde el inicio tienes un aumento de +5 en todas las estadísticas y tu instinto impredecible hace que cualquier jugada sea imposible de leer por un usuario de meta visión. Tienes un control único que te permite maniobrar el balón de maneras que la mayoría de jugadores no puede hacer, obteniendo +8 de Regate desde el inicio y cada vez que ganes en duelos de ruleta o anulación de Regate vs Defensa aumentas +3 puntos hasta un total de 4 veces (máximo 12 puntos). Tus disparos, junto con tu control absoluto, te dan +10 de Tiro como tu mejor arma, +5 si recibes un pase exitoso en tu post (no acumulable). Cada vez que ganes en duelos (sin ser Regate vs Defensa o Defensa vs Pase) ganas +3 de Tiro hasta un máximo de 6 veces (máximo 18 puntos). Tu control absorbente te permite interceptar tiros y pases con facilidad, otorgando +7 de Defensa, y si ganas duelos de Tiro vs Defensa y Defensa vs Pase en ruleta o anulación, sumas +5 de Defensa hasta 3 veces (máximo 15). Además, tienes +4 de Físico y +7 de Pase, +3 en Velocidad por tu buen desplazamiento. No pueden rebajarte Tiro, Regate ni Defensa por otras pasivas (salvo de Primera División o superior).
+
+Control absorbente x Volea
+
+Esta habilidad te permite anotar goles incluso estando marcado o en posiciones incómodas. Recibes un pase y puedes anular el duelo para finalizar un tiro al arco, ganando +8 de Tiro de manera permanente hasta 2 veces. Si un rival intenta interponerse, reduces -22% en su Defensa forzando duelo Tiro vs Defensa.
+
+Ejecución:
+Debes redactar el uso de la habilidad y hacer referencia a Control absorbente x Volea. Tiene 6 turnos globales de Cooldown.
+
+Tiro de volea falsa
+
+Permite ejecutar una volea que aparenta ir directa pero cambia el ángulo o trayectoria en el último instante, engañando al rival. Primero obligas a un duelo de Regate vs Defensa, aumentando +12 puntos a tu oponente y reduciendo -22% su Defensa. Luego rematas al arco, reduciendo -7 al portero y si un defensor interviene, reduces -18% en Defensa y Velocidad forzando duelos de Tiro vs Velocidad o Tiro vs Defensa.
+
+Ejecución:
+Redacta cómo engañas al rival con la volea y menciona la habilidad Tiro de volea falsa. Cooldown de 7 turnos globales.
+
+Control absorbente x Regate
+
+Regate que permite burlar a tus rivales. Al ejecutar un regate, tus rivales entran en un duelo Regate vs Defensa, reduciendo su defensa -24%, y si los superas, aumentas +10 en Tiro durante tu jugada.
+
+Ejecución:
+Redacta el regate y menciona el uso de la habilidad Control absorbente x Regate. El bono de +10 en Tiro desaparece al final de la jugada. Cooldown de 7 turnos globales.
+
+Aura de Muerte
+
+Activa un estado de motivación donde te vuelves impredecible incluso para jugadores con buena lectura del campo. Tras ganar un duelo 1vs1, obtienes +6 en todas las estadísticas durante el post y reduces -10 en las estadísticas de ruleta de tus oponentes. No requiere cooldown, pero debes forzar al menos un duelo por post.
+
+Movimiento especial en estado de flujo
+
+Tiro Giratorio
+
+Permite ejecutar un disparo con giro que deja el balón suspendido momentáneamente en el aire antes de rematar con fuerza y efecto. Reduce -13 al portero y fuerza Tiro vs Defensa con reducción de -35% si el rival tiene meta visión. Ninguna habilidad puede anularlo.
+
+Ejecución:
+Se usa solo con balón en el aire o pase aéreo. Mencionar "Mucho gusto Japón, yo soy… ¡Seishiro Nagi!". Cooldown de 9 turnos globales.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* ---------- SISTEMA DE CONTRASEÑA ---------- */
+function acceder(){
+  let x = document.getElementById("pass").value;
+  if(x === "Mikage"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("content").style.display="block";
+  } else{
+    alert("Contraseña incorrecta");
+  }
+}
+
+/* ---------- AUDIO ---------- */
+let isPlaying = false;
+const audio = document.getElementById("audio");
+const btn = document.getElementById("audio-btn");
+
+function toggleAudio(){
+  if(!isPlaying){
+    audio.play();
+    btn.innerText = "Pausar";
+    isPlaying = true;
+  } else{
+    audio.pause();
+    btn.innerText = "Reproducir";
+    isPlaying = false;
+  }
+}
+
+</script>
+
+</body>
+</html>
