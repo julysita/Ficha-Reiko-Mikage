@@ -299,17 +299,6 @@ Se usa solo con balón en el aire o pase aéreo. Mencionar "Mucho gusto Japón, 
 
 <script>
 
-/* ---------- SISTEMA DE CONTRASEÑA ---------- */
-function acceder(){
-  let x = document.getElementById("pass").value;
-  if(x === "Mikage"){
-    document.getElementById("login").style.display="none";
-    document.getElementById("content").style.display="block";
-  } else{
-    alert("Contraseña incorrecta");
-  }
-}
-
 /* ---------- AUDIO ---------- */
 let isPlaying = false;
 const audio = document.getElementById("audio");
@@ -331,5 +320,6 @@ function toggleAudio(){
 
 </body>
 </html>
+
 
 
